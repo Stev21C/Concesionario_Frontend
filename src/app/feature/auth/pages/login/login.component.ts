@@ -1,6 +1,8 @@
+import { TokenService } from './../../../../core/services/token.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, UrlTree } from '@angular/router';
+import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 import { AuthLoginRequestDto } from 'src/app/core/dto/authLoginRequestDto';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AppBaseComponent } from 'src/app/core/utils/AppBaseComponent';
@@ -22,7 +24,7 @@ export class LoginComponent extends AppBaseComponent{
 
 
   // Constructor donde se inyecta router
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService){
+  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private tokenService: TokenService){
     super();
     this.loginForm= this.fb.group({
       email:['', [Validators.required, Validators.email]],
@@ -31,7 +33,7 @@ export class LoginComponent extends AppBaseComponent{
     );
   }
 
-  public signIn(): void{
+  public async signIn(): Promise<void>{
 
     let dtoLogin: AuthLoginRequestDto;  // Obj que se envia a back
 
@@ -52,14 +54,22 @@ export class LoginComponent extends AppBaseComponent{
         "Nuevo Valor": "newVal"
       }*/
 
-      this.authService.signIn(dtoLogin);
+      await lastValueFrom(this.authService.signIn(dtoLogin)); // logueo
+      console.log(this.tokenService.getToken());
+      
+                                        /*.subscribe(value =>{
+        console.log("Se podria mostrar algo");
+      });*/
 
-      console.log(dtoLogin);
+      //console.log(dtoLogin);
+
+      this.router.navigateByUrl("/portafolio");  //Estoy redirigiendo a pagina despues de logueo, es posible que pida await
 
 
     }else{
       alert("Campos obligatorios requeridos");
       console.log(this.getAllErrorsForm(this.loginForm));
+      this.loginForm.markAllAsTouched();
     }
     
   }
