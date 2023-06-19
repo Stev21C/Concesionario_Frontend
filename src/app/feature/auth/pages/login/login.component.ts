@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AuthLoginRequestDto } from 'src/app/core/dto/authLoginRequestDto';
+import { ErrorsForm } from 'src/app/core/enums/ErrorsForm';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AppBaseComponent } from 'src/app/core/utils/AppBaseComponent';
 
@@ -63,7 +64,7 @@ export class LoginComponent extends AppBaseComponent{
 
       //console.log(dtoLogin);
 
-      this.router.navigateByUrl("/portafolio");  //Estoy redirigiendo a pagina despues de logueo, es posible que pida await
+      await this.router.navigateByUrl("/portafolio");  //Estoy redirigiendo a pagina despues de logueo, es posible que pida await
 
 
     }else{
@@ -78,14 +79,21 @@ export class LoginComponent extends AppBaseComponent{
     this.router.navigateByUrl("autenticacion/registro"); con router, se cambio por routerlink
   }*/
 
+
+  
+  /**
+   * Retorna mensaje de error de un campo del formulario
+   * @param field 
+   * @returns 
+   */
   public getErrorsForm(field: string): string{
     let message;
 
     if(this.isTouchedField(this.loginForm, field)){
       if(this.loginForm.get(field).hasError('required')){
-        message= 'El campo es requerido';
+        message= ErrorsForm.REQUIRED;                          // enumeracion solo en TS, constante con mensaje y se invoca
       }else if(this.loginForm.get(field).hasError('email')){
-        message= 'Requiere formato email: example@mail.com';
+        message= 'Requiere formato email: example@mail.com';  //Se puede cambiar por ErrorFormat.
       }
     }
 

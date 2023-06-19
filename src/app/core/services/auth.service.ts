@@ -5,6 +5,8 @@ import { AuthLoginRequestDto } from '../dto/authLoginRequestDto';
 import { Observable, Subscription, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { AuthLoginResponseDto } from '../dto/authLoginResponseDto';
+import { RegisterRequestDto } from '../dto/authRegisterDto';
+import { RegisterResponseDto } from '../dto/registerResponseDto';
 //const {apiUrl} = environment;
 
 @Injectable({
@@ -33,4 +35,11 @@ export class AuthService {
     
     );  // Peticion al back, con ruta del controller, le paso el body u obj
   }
+
+
+
+  public register(registerDto: RegisterRequestDto): Observable<RegisterResponseDto>{
+    return this.http.post<RegisterResponseDto>(`${this.apiUrl}/auth/register`, registerDto);
+  }
+
 }
