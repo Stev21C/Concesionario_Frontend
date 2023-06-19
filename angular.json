@@ -16,6 +16,9 @@
             "outputPath": "dist/concesionario-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+           ],
             "polyfills": [
               "zone.js"
             ],

@@ -7,6 +7,7 @@ import { AuthLoginRequestDto } from 'src/app/core/dto/authLoginRequestDto';
 import { ErrorsForm } from 'src/app/core/enums/ErrorsForm';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AppBaseComponent } from 'src/app/core/utils/AppBaseComponent';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,11 @@ export class LoginComponent extends AppBaseComponent{
     let dtoLogin: AuthLoginRequestDto;  // Obj que se envia a back
 
     if(this.loginForm.valid){
-      alert("Correcto"); 
+      Swal.fire({
+        icon: 'success',
+        title: 'OK',
+        text: 'Bienvenido!',
+      }); 
 
       let email = this.loginForm.get('email').value
       let password = this.loginForm.get('password').value
@@ -68,7 +73,11 @@ export class LoginComponent extends AppBaseComponent{
 
 
     }else{
-      alert("Campos obligatorios requeridos");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Campos obligatorios requeridos!',
+      }); 
       console.log(this.getAllErrorsForm(this.loginForm));
       this.loginForm.markAllAsTouched();
     }

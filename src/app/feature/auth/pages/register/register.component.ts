@@ -7,6 +7,7 @@ import { ErrorsForm } from 'src/app/core/enums/ErrorsForm';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AppBaseComponent } from 'src/app/core/utils/AppBaseComponent';
 import { CustomValidators } from 'src/app/core/utils/CustomValidators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -48,7 +49,13 @@ export class RegisterComponent extends AppBaseComponent{
 
       this.registered=true;
     }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Tienes errores en formulario!',
+      });
       console.log(this.getAllErrorsForm(this.registerForm));
+      this.registerForm.markAllAsTouched();
     }
   }
     /**
