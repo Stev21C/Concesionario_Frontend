@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class PortfolioComponent {
 
+  public listCarsPortfolio: any[];
+/*
+  constructor(private carService: CarService){
+    this.carService.getAllCars().subscribe({
+      next: value =>{
+        this.listCarsPortfolio = value;
+      }
+    })
+  }
+*/
 }
