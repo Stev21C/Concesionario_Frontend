@@ -1,0 +1,66 @@
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+
+  <style>
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+  </style>
+
+  <!-- Jumbotron -->
+  <div class="container py-4">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+          <div class="card-body p-5 shadow-5 text-center">
+            <form role="form" [formGroup]="infoMechForm">
+
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example2">Caballos de fuerza</label>
+                <input formControlName="horsePower" id="form2Example2" type="number" class="form-control" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example3">Cilindraje</label>
+                <input formControlName="engineDisplacement" id="form2Example3" type="number" class="form-control" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example4">Transmision</label>
+                <input formControlName="transmission" id="form2Example4" type="text" class="form-control" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example5">Tipo de combustible</label>
+                <input formControlName="fuelType" id="form2Example5" type="text" class="form-control" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example5">Traccion</label>
+                <input formControlName="traction" id="form2Example5" type="number" class="form-control" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example5">Direccion</label>
+                <input formControlName="steering" id="form2Example5" type="text" class="form-control" />
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->

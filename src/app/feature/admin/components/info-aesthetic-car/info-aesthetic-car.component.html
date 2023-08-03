@@ -1,0 +1,56 @@
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+  
+    <style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+  
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+    </style>
+  
+    <!-- Jumbotron -->
+    <div class="container py-4">
+      <div class="row g-0 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+            <div class="card-body p-5 shadow-5 text-center">
+                <form role="form" [formGroup]="infoAestheticForm">
+        
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form2Example2">Color</label>
+                      <input formControlName="color" id="form2Example2" type="text" class="form-control"/>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form2Example3">Numero de puertas</label>
+                      <input formControlName="numberDoor" id="form2Example3" type="number" class="form-control"/>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form2Example4">Numero de asientos</label>
+                      <input formControlName="numberSeats" id="form2Example4" type="number" class="form-control"/>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form2Example5">Imagen</label>
+                      <input formControlName="imagePath" id="form2Example5" type="text" class="form-control"/>
+                    </div>
+        
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->

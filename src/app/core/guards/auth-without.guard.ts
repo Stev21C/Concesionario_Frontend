@@ -18,8 +18,6 @@ export class AuthWithoutGuard{
   public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-      
 
     if(!this.tokenService.getToken()){ // Si no existe token, no lo deje ingresar
       Swal.fire({

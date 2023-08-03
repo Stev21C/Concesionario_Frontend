@@ -7,13 +7,18 @@ import { GuardsService } from '../core/services/guards.service';
 const routes: Routes = [
   {
     path: "autenticacion",
-    canActivate: [()=>inject(GuardsService).canActivateWithAuth()], // El guard no permite ingresar a paginas de logueo si ya se autentico
+    canActivate: [()=>inject(GuardsService).canActivateLogin()], // El guard no permite ingresar a paginas de logueo si ya se autentico
     loadChildren: () => import("./auth/auth.module").then(a => a.AuthModule)
   },
   {
     path: "portafolio",
     canActivate: [AuthWithoutGuard], // El guard de auth creado no permite ingresar, funciona de seguridad
     loadChildren: () => import("./home/home.module").then(a => a.HomeModule)
+  },
+  {
+    path: "admin",
+    canActivate: [()=>inject(GuardsService).canActiveWithRolAdmin()], 
+    loadChildren: () => import("./admin/admin.module").then(a => a.AdminModule)
   }
 ];
 
