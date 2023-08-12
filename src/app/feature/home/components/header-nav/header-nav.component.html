@@ -7,11 +7,19 @@
     
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto">
+          
+          
           <li class="nav-item">
             <a class="nav-link mx-2 active" aria-current="page" href="/portafolio">Portafolio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2">Bienvenido {{nameCustomer}}, {{emailCustomer}}</a>
+            <a class="nav-link mx-2 active" aria-current="page" href="/portafolio/carrito"><i class="fa fa-shopping-cart" aria-hidden="true"></i> ()</a>  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2 active" aria-current="page" href="/admin/register-car">Administrador</a>  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2"><span><i class="fa fa-user"></i> {{nameCustomer}}, {{emailCustomer}}</span></a>
           </li>
         </ul>
       </div>

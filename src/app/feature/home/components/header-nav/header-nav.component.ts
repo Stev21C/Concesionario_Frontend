@@ -16,4 +16,6 @@ export class HeaderNavComponent {
     this.emailCustomer= this.tokenService.getInfoToken().email;
   }
 
+
+
 }

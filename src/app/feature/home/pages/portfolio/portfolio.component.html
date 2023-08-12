@@ -1,7 +1,32 @@
 <header>
     <app-header-nav></app-header-nav>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </header>
 
-<p>portfolio works!</p>
+<p>Listado de vehiculos en oferta a vender</p>
 
-<p **ngFor="let car of listCarsPortfolio">{{car.reference}}</p>
+<div class="container">
+    <div class="row justify-content-fluid">
+        
+            <div class="card m-2" style="max-width: 520px;" *ngFor="let car of listCarsPortfolio">
+                <div class="row g-0">
+                    <div class="col-md-4 mt-4" data-mdb-ripple-color="light">
+                        <img src="{{car.imagePath}}" class="img-fluid rounded" alt="image-car">
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body p-2">
+                            <h5 class="card-title">{{car.marcaCocheString}}, {{car.reference}}</h5>
+                            <p class="card-text">{{car.price}}, {{car.transmission}}, {{car.category}}</p>
+                            <p class="card-text">Unidades disponibles: {{car.stock}}</p>
+                            <button class="btn btn-info m-1 p-2" *ngIf="car.stock != 0" (click)="addShoppingCart(car)">Agregar al carrito</button>
+                            <button class="btn btn-danger m-1 p-2" *ngIf="car.stock != 0" (click)="deleteShoppingCart(car)">Eliminar del carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+    </div>
+
+</div>

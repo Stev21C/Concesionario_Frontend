@@ -12,8 +12,8 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
 
-  public getAllCars(): Observable<any[]> {
-    return this.http.get<any[]>(`${apiUrl}/coches`);
+  public getAllCars(): Observable<CarDto[]> {
+    return this.http.get<CarDto[]>(`${apiUrl}/coches`);
   }
 
   public registerCar(newCar: CarDto): Observable<CarDto>{

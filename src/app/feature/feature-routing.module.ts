@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: "admin",
-    canActivate: [()=>inject(GuardsService).canActiveWithRolAdmin()], 
+    canActivate: [(()=>inject(GuardsService).canActiveWithRolAdmin())], 
     loadChildren: () => import("./admin/admin.module").then(a => a.AdminModule)
   }
 ];
