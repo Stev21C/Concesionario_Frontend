@@ -1,0 +1,65 @@
+<header>
+    <app-header-nav></app-header-nav>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</header>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Codigo factura</th>
+                <th scope="col">Cedula cliente</th>
+                <th scope="col">fecha</th>
+                <th scope="col">Total</th>
+                <th scope="col">Método de pago</th>
+                <th scope="col">Ver Detalles</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="table-success" *ngFor="let purchase of historyPurchase">
+                <td>{{purchase.numberBill}}</td>
+                <td>{{purchase.cardIdCustomer}}</td>
+                <td>{{purchase.date}}</td>
+                <td>{{purchase.total}}</td>
+                <td>{{purchase.paymentMethod}}</td>
+                <td><button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#cochesCompras" (click)="showListCarsPurchase(purchase.carsPurchase)">Ver más</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="cochesCompras" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Informacion de la factura</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Referencia del coche</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <tr class="table-success" *ngFor="let car of carsSold">
+                        <td>{{car.referenceCar}}</td>
+                        <td>{{car.quantityCars}}</td>
+                        <td>{{car.totalPriceCars}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" onclick="window.print();">Imprimir</button>
+        </div>
+      </div>
+    </div>
+  </div>

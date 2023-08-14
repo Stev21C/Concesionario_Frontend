@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarDto } from 'src/app/core/dto/carDto';
 import { CarsPurchaseDto } from 'src/app/core/dto/carsPurchaseDto';
 import { CarService } from 'src/app/core/services/car.service';
@@ -9,19 +9,24 @@ import Swal from 'sweetalert2';
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.css'],
 })
-export class PortfolioComponent {
+export class PortfolioComponent implements OnInit{
   public listCarsPortfolio: CarDto[];
 
   public carsPurchase: Array<CarsPurchaseDto>;
 
   constructor(private carService: CarService) {
-    this.carsPurchase = []; // Se iniciliza arreglo
+    //this.carsPurchase = []; // Se iniciliza arreglo
     this.carService.getAllCars().subscribe({
-      next: (value) => {
+      next: value => {
         this.listCarsPortfolio = value;
         console.log(this.listCarsPortfolio);
       },
     });
+  }
+
+  ngOnInit(): void{
+    this.carsPurchase = JSON.parse(localStorage.getItem("carsPurchase")) ? JSON.parse(localStorage.getItem("carsPurchase")): [];
+    this.carService.setNumberProducts();
   }
 
   /**
@@ -51,11 +56,11 @@ export class PortfolioComponent {
             car.quantityCars += 1;
             car.totalPriceCars += carNew.price;  
             added = true;
-            this.listCarsPortfolio.forEach(car => {
+            /*this.listCarsPortfolio.forEach(car => {
               if(car.codeCar == carNew.codeCar){
                 car.stock = car.stock -1
               }
-            }) // disminuir y ver en front en tiemp real
+            }) // disminuir y ver en front en tiemp real*/
           }
         }
       }
@@ -71,16 +76,19 @@ export class PortfolioComponent {
         quantityCars: 1,
         totalPriceCars: carNew.price,
       };
-      this.listCarsPortfolio.forEach(car => {
+      /*this.listCarsPortfolio.forEach(car => {
         if(car.codeCar == carNew.codeCar){
           car.stock = car.stock -1
         }
-      })
+      })*/
 
       this.carsPurchase.push(carPurchase);
+      
     }
 
     localStorage.setItem('carsPurchase', JSON.stringify(this.carsPurchase)); // Se envia lista porque la pag esta en otro componente, nunca se vence, sigue teniendo la lista
+    this.carService.setNumberProducts();
+    console.log("coche agregado",this.carsPurchase)
   }
 
   /**
@@ -109,11 +117,11 @@ export class PortfolioComponent {
             car.quantityCars -= 1;
             car.totalPriceCars -= carNew.price;
             deleted = true;
-            this.listCarsPortfolio.forEach(car => {
+            /*this.listCarsPortfolio.forEach(car => {
               if(car.codeCar == carNew.codeCar){
                 car.stock = car.stock +1
               }
-            })
+            })*/
           }
         }
 
@@ -121,5 +129,6 @@ export class PortfolioComponent {
     }
     localStorage.setItem('carsPurchase', JSON.stringify(this.carsPurchase));
     console.log("coche eliminado",this.carsPurchase)
+    this.carService.setNumberProducts();
   }
 }

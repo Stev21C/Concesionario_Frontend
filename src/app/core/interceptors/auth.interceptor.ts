@@ -8,11 +8,12 @@ import {
 import {catchError, Observable, throwError} from 'rxjs';
 import {TokenService} from "../services/token.service";
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private tokenService: TokenService) {}
+  constructor(private tokenService: TokenService, private router:Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log("entre al interceptor");
@@ -44,6 +45,8 @@ export class AuthInterceptor implements HttpInterceptor {
             title: 'Oops...',
             text: 'No tienes permisos para acceder a ésta página.'
           })
+          this.tokenService.deleteToken();
+          this.router.navigateByUrl("/autenticacion/inicio-sesion");
         }
         return throwError(() => err);
       })

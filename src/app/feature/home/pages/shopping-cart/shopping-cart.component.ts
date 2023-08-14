@@ -41,7 +41,9 @@ export class ShoppingCartComponent {
         this.numberBill= value.numberBill;
         this.purchaseSaved = true;
         localStorage.setItem("carsPurchase", "");
+        localStorage.removeItem("carsPurchase");
       }
+      
     })
   }
 

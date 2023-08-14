@@ -1,6 +1,6 @@
 import { CustomerJwtDto } from './../dto/customerJwtDto';
 import { Injectable } from '@angular/core';
-import { getCookie, setCookie } from 'typescript-cookie';
+import { Cookies, getCookie, setCookie } from 'typescript-cookie';
 import jwt_decode from "jwt-decode";
 
 @Injectable({
@@ -25,7 +25,8 @@ export class TokenService {
   }
 
   public deleteToken(): void{
-
+    localStorage.removeItem("carsPurchase")
+    Cookies.remove("token");
   }
 
 
