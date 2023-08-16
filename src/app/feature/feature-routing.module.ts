@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthWithoutGuard } from '../core/guards/auth-without.guard';
 import { AuthWithGuard } from '../core/guards/auth-with.guard';
 import { GuardsService } from '../core/services/guards.service';
+import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
     path: "admin",
     canActivate: [(()=>inject(GuardsService).canActiveWithRolAdmin())], 
     loadChildren: () => import("./admin/admin.module").then(a => a.AdminModule)
+  },
+  {
+    path: "index",
+    component: IndexComponent
   }
 ];
 
