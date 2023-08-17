@@ -22,7 +22,7 @@ const routes: Routes = [
     loadChildren: () => import("./admin/admin.module").then(a => a.AdminModule)
   },
   {
-    path: "index",
+    path: "",
     component: IndexComponent
   }
 ];
